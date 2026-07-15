@@ -3,19 +3,19 @@
 # =========================================================
 
 # --- Web Framework -----------------------------------------
-fastapi==0.115.0                    #
-uvicorn[standard]==0.32.0           #
+# fastapi==0.115.0                    #
+# uvicorn[standard]==0.32.0           #
 # pydantic==2.9.2
-pydantic-settings==2.6.0            #
+# pydantic-settings==2.6.0            #
 # python-multipart==0.0.12
 
 # --- Environment / Config -----------------------------------
-python-dotenv==1.0.1
+# python-dotenv==1.0.1
 
 # --- Computer Vision -----------------------------------------
 # opencv-python-headless==4.10.0.84
 # Pillow==10.4.0
-ultralytics==8.3.20                 #
+# ultralytics==8.3.20                 #
 
 # --- Machine Learning / Data Science --------------------------
 # numpy==1.26.4
@@ -24,12 +24,12 @@ ultralytics==8.3.20                 #
 # joblib==1.4.2
 
 # --- LLM / Generative AI ---------------------------------------
-google-generativeai==0.8.3          #
+# google-generativeai==0.8.3          #
 # langchain==0.3.4
 # langchain-community==0.3.3
 # langchain-google-genai==2.0.4
-langchain-groq>=0.2.0               #
-langchain-core>=0.3.0               #
+# langchain-groq>=0.2.0               #
+# langchain-core>=0.3.0               #
 
 # --- RAG / Vector Search / Embeddings ----------------------------
 # sentence-transformers==3.2.1
@@ -40,5 +40,28 @@ langchain-core>=0.3.0               #
 # loguru==0.7.2
 
 # --- Testing (kept minimal here; full dev tooling in requirements-dev.txt)
-pytest==8.3.3                       #
-httpx==0.27.2                       #
+# pytest==8.3.3                       #
+# httpx==0.27.2                       #
+
+
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# Install CPU-Only PyTorch first to satisfy ultralytics' dependencies
+torch==2.2.0
+torchvision==0.17.0
+
+# Your FastAPI and utility packages
+fastapi==0.115.0                    
+uvicorn[standard]==0.32.0 
+pydantic-settings==2.6.0 
+python-dotenv==1.0.1
+
+# Ultralytics (will now use the CPU torch installed above instead of CUDA)
+ultralytics==8.3.20
+
+# AI/ML & Other Integrations
+google-generativeai==0.8.3 
+langchain-groq>=0.2.0               
+langchain-core>=0.3.0
+pytest==8.3.3                       
+httpx==0.27.2
