@@ -50,13 +50,16 @@
 torch==2.2.0
 torchvision==0.17.0
 
+# YOUR OPEN-CV HEADLESS COMPATIBILITY PATCH
+opencv-python-headless==4.10.0.84
+
 # Your FastAPI and utility packages
 fastapi==0.115.0                    
 uvicorn[standard]==0.32.0 
 pydantic-settings==2.6.0 
 python-dotenv==1.0.1
 
-# Ultralytics (will now use the CPU torch installed above instead of CUDA)
+# Ultralytics 
 ultralytics==8.3.20
 
 # AI/ML & Other Integrations
