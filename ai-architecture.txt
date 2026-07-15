@@ -1,0 +1,151 @@
+servixa-ai/
+│
+├── README.md                   # WAITING
+├── requirements.txt            # DONE
+├── requirements-dev.txt        # REMOVED
+├── pyproject.toml              # WAITING
+├── .env                        # DONE
+├── .env.example                # DONE
+├── .gitignore                  # Waiting
+├── Dockerfile                  # Waiting
+├── docker-compose.yml          # WAITING
+│
+├── app/
+│   │
+│   ├── main.py                 # DONE
+│   ├── config.py               # DONE
+│   ├── logger.py               # DONE
+│   ├── dependencies.py         # DONE
+│   ├── exceptions.py           # DONE
+│   │
+│   ├── api/
+│   │   ├── __init__.py         # EMPTY
+│   │   ├── router.py           # DONE
+│   │   ├── pricing.py          
+│   │   ├── id_verification.py  # DONE
+│   │   ├── review_analysis.py  # DONE
+│   │   └── chatbot.py
+│   │
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── pricing.py
+│   │   ├── id_verification.py  # DONE
+│   │   ├── review_analysis.py  # DONE
+│   │   └── chatbot.py
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── pricing_service.py
+│   │   ├── id_service.py       # DONE
+│   │   ├── review_service.py   # DONE
+│   │   └── chatbot_service.py
+│   │
+│   ├── modules/
+│   │   │
+│   │   ├── pricing/
+│   │   │   ├── __init__.py
+│   │   │   ├── loader.py
+│   │   │   ├── preprocessing.py
+│   │   │   ├── predictor.py
+│   │   │   ├── postprocessing.py
+│   │   │   ├── inference.py
+│   │   │   └── models/
+│   │   │       ├── model.pkl
+│   │   │       └── pipeline.pkl
+│   │   │
+│   │   ├── id_verification/    # DONE
+│   │   │   ├── __init__.py
+│   │   │   ├── detector.py
+│   │   │   ├── cropper.py
+│   │   │   ├── enhancer.py
+│   │   │   ├── ocr.py
+│   │   │   ├── parser.py
+│   │   │   ├── validator.py
+│   │   │   ├── inference.py
+│   │   │   ├── prompts.py
+│   │   │   └── models/
+│   │   │       └── yolo_id_detector.pt
+│   │   │
+│   │   ├── review_analysis/    # DONE
+│   │   │   ├── __init__.py     # NOT MADE
+│   │   │   ├── prompts.py
+│   │   │   ├── llm_chain.py
+│   │   │   ├── parser.py
+│   │   │   ├── validator.py
+│   │   │   └── inference.py
+│   │   │
+│   │   └── rag_chatbot/
+│   │       ├── __init__.py
+│   │       ├── ingestion.py
+│   │       ├── embeddings.py
+│   │       ├── vector_store.py
+│   │       ├── retriever.py
+│   │       ├── intent_classifier.py
+│   │       ├── prompt_builder.py
+│   │       ├── generator.py
+│   │       ├── conversation_memory.py
+│   │       ├── inference.py
+│   │       │
+│   │       ├── knowledge_base/
+│   │       │   ├── platform/
+│   │       │   └── home_services/
+│   │       │
+│   │       └── vectordb/
+│   │
+│   ├── llm/
+│   │   ├── __init__.py
+│   │   ├── factory.py
+│   │   ├── gemini_client.py
+│   │   ├── prompts.py
+│   │   └── output_parser.py
+│   │
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── image.py
+│   │   ├── preprocessing.py
+│   │   ├── validators.py
+│   │   ├── file_manager.py
+│   │   ├── json_utils.py
+│   │   ├── response.py             # DONE
+│   │   ├── helpers.py
+│   │   └── constants.py            # DONE
+│   │
+│   ├── models/
+│   │   ├── pricing/
+│   │   ├── id/
+│   │   ├── review/
+│   │   └── embeddings/
+│   │
+│   └── storage/                    # DONE
+│       ├── uploads/
+│       ├── cropped/
+│       ├── enhanced/
+│       ├── cache/
+│       ├── outputs/
+│       └── logs/
+│
+├── tests/
+│   ├── test_pricing.py
+│   ├── test_id_verification.py     # DONE
+│   ├── test_review_analysis.py     # DONE
+│   ├── test_chatbot.py
+│   └── test_api.py
+│
+├── docs/
+│   ├── architecture.md
+│   ├── api.md
+│   ├── deployment.md
+│   ├── models.md
+│   └── development.md
+│
+├── scripts/
+│   ├── build_vectordb.py
+│   ├── download_models.py
+│   ├── evaluate_models.py
+│   └── clean_storage.py
+│
+└── notebooks/
+    ├── pricing_experiments.ipynb
+    ├── id_verification.ipynb
+    ├── review_analysis.ipynb
+    └── rag_experiments.ipynb
