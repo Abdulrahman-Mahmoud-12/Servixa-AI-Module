@@ -1,0 +1,33 @@
+# Use a slim Python environment
+FROM python:3.10-slim
+
+# Install system packages required for OpenCV, YOLO, and OCR
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    ffmpeg \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /code
+
+# Install python dependencies first to optimize docker caching
+COPY ./requirements.txt /code/requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+# Copy application files
+COPY ./app /code/app
+
+# Recreate folders from your directory structure inside the container for dynamic file writing
+RUN mkdir -p /code/app/storage/uploads \
+             /code/app/storage/cropped \
+             /code/app/storage/enhanced \
+             /code/app/storage/cache \
+             /code/app/storage/outputs \
+             /code/app/storage/logs
+
+# Set Python path environments
+ENV PYTHONPATH=/code
+
+# Run the app (Render will inject the PORT environment variable)
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-10000}"]

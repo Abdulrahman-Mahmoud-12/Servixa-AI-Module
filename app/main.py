@@ -7,6 +7,7 @@ from typing import AsyncGenerator
 
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.router import api_router
 from app.config import settings
@@ -58,8 +59,22 @@ app = FastAPI(
     openapi_url=f"{API_PREFIX}/openapi.json",
 )
 
-# Register the central API router (health check now; pricing, ID
-# verification, review analysis, and chatbot routers will be added
+# --- CORS MIDDLEWARE ADDED ---
+# Allows other apps (frontend & backend) to query your endpoints directly.
+origins = [
+    "http://localhost:3000",       # Local web apps
+    "https://your-main-app.com",   # Your production frontend or backend
+    "*",                           # Let ALL origins call it (useful for cross-server API setups)
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # inside app/api/router.py as those modules are implemented).
 app.include_router(api_router, prefix=API_PREFIX)
 
@@ -81,6 +96,8 @@ async def root():
 
 
 if __name__ == "__main__":
+
+    port = int(os.environ.get("PORT", settings.app.port))
     uvicorn.run(
         "app.main:app",
         host=settings.app.host,
