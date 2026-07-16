@@ -46,11 +46,14 @@
 
 --extra-index-url https://download.pytorch.org/whl/cpu
 
+# Explicitly restrict NumPy to 1.x to avoid compatibility crash with PyTorch/YOLO
+numpy>=1.24.0,<2.0.0
+
 # Install CPU-Only PyTorch first to satisfy ultralytics' dependencies
 torch==2.2.0
 torchvision==0.17.0
 
-# YOUR OPEN-CV HEADLESS COMPATIBILITY PATCH
+# Your OpenCV Headless Compatibility Patch
 opencv-python-headless==4.10.0.84
 
 # Your FastAPI and utility packages
@@ -64,7 +67,7 @@ ultralytics==8.3.20
 
 # AI/ML & Other Integrations
 google-generativeai==0.8.3 
-langchain-groq>=0.2.0               
+langchain-groq>=0.2.0              
 langchain-core>=0.3.0
-pytest==8.3.3                       
+pytest==8.3.3                      
 httpx==0.27.2
